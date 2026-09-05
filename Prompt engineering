@@ -1,0 +1,157 @@
+# 🚀 My Prompt Engineering Journey
+
+> Documenting my path from **complete beginner → confident prompt engineer**, one prompt at a time.
+> Started: **September 2025** 📍 Chattogram, Bangladesh
+
+---
+
+## 🎯 Why This Repo Exists
+
+Prompt engineering is the skill of communicating with AI models to get exactly what you want.
+This repository is my **learning journal, roadmap, and playground** — every lesson, experiment,
+prompt, and project lives here as I level up.
+
+**My goals:**
+- [ ] Understand how Large Language Models (LLMs) actually work
+- [ ] Master core → advanced prompting techniques
+- [ ] Build 3+ real projects using prompts
+- [ ] Learn to evaluate and secure prompts (prompt injection defense)
+- [ ] Share what I learn in public
+
+---
+
+## 🗺️ The Roadmap
+
+### 🌱 Phase 1 — Foundations (Week 1)
+*What is this "prompt engineering" thing anyway?*
+
+- [ ] What is an LLM? (tokens, context window, temperature — plain English)
+- [ ] Why prompts matter: same model, wildly different outputs
+- [ ] Anatomy of a good prompt: **Role + Task + Context + Format**
+- [ ] Common beginner mistakes (vague prompts, missing context, no output format)
+
+**🧪 Practice:**
+- [ ] Prompt an AI to explain a topic to a 5-year-old vs. a PhD student — compare outputs
+- [ ] Rewrite 5 bad prompts from your own history into well-structured ones
+
+---
+
+### 🌿 Phase 2 — Core Techniques (Weeks 2–3)
+*The fundamentals every prompt engineer must know.*
+
+- [ ] **Zero-shot prompting** — asking directly, no examples
+- [ ] **Few-shot prompting** — teaching with examples
+- [ ] **Instruction prompting** — clear, imperative commands
+- [ ] **Delimiters & formatting** — using ```, """, <tags> to structure input
+- [ ] **Output formatting** — JSON, tables, bullet points, word limits
+- [ ] **Role/persona prompting** — "You are a senior Python developer..."
+
+**🧪 Practice:**
+- [ ] Get an AI to output valid JSON every time (no extra text!)
+- [ ] Build a few-shot prompt for sentiment classification
+- [ ] Create 3 personas (teacher, lawyer, comedian) and test the same question
+
+---
+
+### 🌳 Phase 3 — Intermediate (Weeks 4–5)
+*Making the model think step by step.*
+
+- [ ] **Chain-of-Thought (CoT)** — "Let's think step by step"
+- [ ] **Self-consistency** — multiple reasoning paths, pick the best answer
+- [ ] **Prompt chaining** — split big tasks into smaller sequential prompts
+- [ ] **Prompt templates** — reusable, parameterized prompts
+- [ ] **Conversation design** — multi-turn prompting, context management
+
+**🧪 Practice:**
+- [ ] Solve math/logic puzzles: direct prompt vs. CoT — measure the difference
+- [ ] Build a 3-step prompt chain: idea → outline → full article
+- [ ] Create one reusable template with placeholders like `{topic}`, `{tone}`
+
+---
+
+### 🌲 Phase 4 — Advanced (Weeks 6–7)
+*Where prompting meets engineering.*
+
+- [ ] **ReAct** — Reasoning + Acting (tools + prompts)
+- [ ] **RAG basics** — Retrieval-Augmented Generation, grounding with your own data
+- [ ] **Function calling / tool use** — structured outputs that trigger real actions
+- [ ] **Tree of Thoughts** — exploring multiple solution branches
+- [ ] **System prompts** — designing instructions for AI agents/apps
+
+**🧪 Practice:**
+- [ ] Write a prompt that makes an AI call a (mock) weather API via function calling
+- [ ] Feed a document into context and ask questions only answerable from it (mini-RAG)
+
+---
+
+### 🛡️ Phase 5 — Evaluation & Security (Week 8)
+*Trust, but verify.*
+
+- [ ] **Prompt injection** — how prompts get hijacked (and how to defend)
+- [ ] **Jailbreaking** — understand it to defend against it
+- [ ] **Prompt evaluation** — how to test and compare prompts systematically
+- [ ] Hallucinations: why they happen, how to reduce them
+
+**🧪 Practice:**
+- [ ] Try to prompt-inject your own chatbot → then fix it
+- [ ] Build a tiny prompt test suite: 10 test cases, pass/fail rubric
+
+---
+
+## 🛠️ Projects (The Fun Part)
+
+| # | Project | Phase | Status |
+|---|---------|-------|--------|
+| 1 | **Prompt Library** — 20 tested, reusable prompts with notes | Phase 2 | ⬜ |
+| 2 | **AI Study Buddy** — persona + CoT prompt that quizzes me on any topic | Phase 3 | ⬜ |
+| 3 | **Content Generator** — prompt chain that turns a topic into a full blog post | Phase 3 | ⬜ |
+| 4 | **Mini Chatbot with System Prompt** — a well-designed assistant for a niche task | Phase 4 | ⬜ |
+| 5 | **Prompt Injection Demo** — vulnerable bot + hardened version + write-up | Phase 5 | ⬜ |
+
+---
+
+## 📓 Learning Log
+
+Template — copy for each session:
+
+```
+### Day X — [Date]
+**Topic:** 
+**What I learned:** 
+**Best prompt I wrote today:** 
+**What confused me:** 
+**Tomorrow's plan:** 
+```
+
+---
+
+## 📚 Resources I'm Using
+
+**Docs & Guides**
+- [Prompt Engineering Guide (DAIR.AI)](https://www.promptingguide.ai/)
+- [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
+- [Anthropic Prompt Engineering Docs](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
+
+**Courses & Videos**
+- [ChatGPT Prompt Engineering for Developers (DeepLearning.AI)](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
+- [Learn Prompting (free course)](https://learnprompting.org/)
+
+**Papers (for later)**
+- Chain-of-Thought Prompting (Wei et al., 2022)
+- ReAct: Synergizing Reasoning and Acting (Yao et al., 2022)
+
+---
+
+## 🏁 Progress Tracker
+
+| Phase | Status | Completed On |
+|-------|--------|--------------|
+| 🌱 Foundations | 🔵 In Progress | — |
+| 🌿 Core Techniques | ⚪ Not started | — |
+| 🌳 Intermediate | ⚪ Not started | — |
+| 🌲 Advanced | ⚪ Not started | — |
+| 🛡️ Evaluation & Security | ⚪ Not started | — |
+
+---
+
+> ⭐ *If you're learning prompt engineering too, follow along, steal this roadmap, and let's learn in public!*
