@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>আমার প্রম্পট ইঞ্জিনিয়ারিং যাত্রা 🚀</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --purple: #a371f7;
+    --blue: #58a6ff;
+    --yellow: #d29922;
+    --red: #f85149;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Noto Sans Bengali', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+  /* ===== হিরো সেকশন ===== */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(135deg, rgba(163,113,247,0.15), rgba(63,185,80,0.12));
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, var(--purple), var(--green), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .hero p { color: var(--muted); font-size: 1.05rem; }
+  .badge-row { margin-top: 18px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .badge .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 6px; }
+  .dot.live { background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+  /* ===== অগ্রগতি বার ===== */
+  .progress-section { margin: 35px 0 10px; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--muted); margin-bottom: 6px; }
+  .progress-track { background: #21262d; border-radius: 999px; height: 14px; overflow: hidden; border: 1px solid var(--border); }
+  .progress-fill {
+    height: 100%;
+    width: 8%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--purple), var(--green));
+    transition: width 0.6s ease;
+  }
+
+  /* ===== সেকশন ফরম্যাট ===== */
+  section { margin: 45px 0; }
+  h2.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
+
+  /* ===== স্ট্যাটাস কার্ড ===== */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 1.8rem; font-weight: 700; color: var(--green); }
+  .stat-card .label { color: var(--muted); font-size: 0.85rem; }
+
+  /* ===== ফেজ কার্ড ===== */
+  .phase {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .phase:hover { border-color: var(--purple); }
+  .phase summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .phase summary::-webkit-details-marker { display: none; }
+  .phase-icon { font-size: 1.6rem; }
+  .phase-info { flex: 1; min-width: 200px; }
+  .phase-title { font-weight: 700; font-size: 1.05rem; }
+  .phase-week { color: var(--muted); font-size: 0.85rem; }
+  .phase-body { padding: 0 22px 20px 22px; border-top: 1px dashed var(--border); padding-top: 15px; }
+  .phase-body ul { list-style: none; }
+  .phase-body li { padding: 6px 0 6px 30px; position: relative; }
+  .phase-body li::before {
+    content: "☐";
+    position: absolute;
+    left: 4px;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+  .status {
+    font-size: 0.75rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 999px; white-space: nowrap;
+  }
+  .status.active { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.4); }
+  .status.todo { background: rgba(139,148,158,0.12); color: var(--muted); border: 1px solid var(--border); }
+  .arrow { margin-left: auto; color: var(--muted); transition: transform 0.2s; }
+  .phase[open] .arrow { transform: rotate(180deg); }
+  .practice {
+    margin-top: 12px; padding: 12px 16px;
+    background: rgba(88,166,255,0.07);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.92rem;
+  }
+  .practice b { color: var(--blue); }
+
+  /* ===== প্রজেক্ট কার্ড ===== */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  .project {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .project h3 { font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+  .project p { color: var(--muted); font-size: 0.88rem; }
+  .project-tag { display: inline-block; margin-top: 10px; font-size: 0.75rem; padding: 3px 10px; border-radius: 999px; background: rgba(163,113,247,0.14); color: var(--purple); }
+
+  /* ===== লগ কার্ড ===== */
+  .log-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--yellow);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .log-card h3 { font-size: 1rem; color: var(--yellow); margin-bottom: 8px; }
+  .log-card p { color: var(--muted); font-size: 0.92rem; }
+  .log-card code {
+    display: block; margin-top: 8px; padding: 10px 14px;
+    background: #0d1117; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.85rem; color: var(--green);
+    font-family: 'Consolas', monospace;
+    white-space: pre-wrap;
+  }
+
+  /* ===== রিসোর্স ===== */
+  .resources a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .resources a:hover { border-color: var(--green); transform: translateX(6px); }
+  .resources a span { color: var(--muted); font-size: 0.85rem; display: block; }
+
+  /* ===== ফুটার ===== */
+  footer {
+    text-align: center;
+    padding: 35px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  footer .heart { color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- 🔝 হিরো -->
+<div class="hero">
+  <h1>🚀 আমার প্রম্পট ইঞ্জিনিয়ারিং যাত্রা</h1>
+  <p>একদম শুরু থেকে — প্রতিদিন একটু একটু করে শেখা, একদম নিজের ভাষায়।<br>
+  প্রতিটা প্রম্পট, প্রতিটা ভুল, প্রতিটা আবিষ্কার — সব এখানে লেখা থাকবে।</p>
+  <div class="badge-row">
+    <span class="badge">📅 শুরু: সেপ্টেম্বর ২০২৫</span>
+    <span class="badge">📍 চট্টগ্রাম, বাংলাদেশ</span>
+    <span class="badge">স্ট্যাটাস: শেখা চলছে <span class="dot live"></span></span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 📊 সামগ্রিক অগ্রগতি -->
+  <div class="progress-section">
+    <div class="progress-label">
+      <span>🗺️ মোট অগ্রগতি</span>
+      <span>ফেজ ১ চলছে...</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+  </div>
+
+  <!-- 📈 স্ট্যাটাস -->
+  <section>
+    <div class="stats">
+      <div class="stat-card"><div class="num">১</div><div class="label">চলমান ফেজ</div></div>
+      <div class="stat-card"><div class="num">৫</div><div class="label">মোট ফেজ</div></div>
+      <div class="stat-card"><div class="num">৫</div><div class="label">পরিকল্পিত প্রজেক্ট</div></div>
+      <div class="stat-card"><div class="num">১</div><div class="label">লেখা লগ</div></div>
+    </div>
+  </section>
+
+  <!-- 🗺️ রোডম্যাপ -->
+  <section>
+    <h2 class="section-title">🗺️ আমার রোডম্যাপ</h2>
+    <p class="section-sub">৮ সপ্তাহের পরিকল্পনা — ৫টি ধাপ। যেকোনো ধাপে ক্লিক করলেই বিস্তারিত দেখা যাবে।</p>
+
+    <details class="phase" open>
+      <summary>
+        <span class="phase-icon">🌱</span>
+        <span class="phase-info">
+          <div class="phase-title">ফেজ ১ — ভিত্তি (Foundations)</div>
+          <div class="phase-week">১ম সপ্তাহ</div>
+        </span>
+        <span class="status active">🔵 চলছে</span>
+        <span class="arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+        <ul>
+          <li>LLM (Large Language Model) আসলে কী — সহজ ভাষায়</li>
+          <li>টোকেন, কনটেক্সট উইন্ডো, টেম্পারেচার — এই ৩টি জাদুর শব্দ</li>
+          <li>ভালো প্রম্পটের গঠন: রোল + টাস্ক + কনটেক্সট + ফরম্যাট</li>
+          <li>নতুনদের সাধারণ ভুলগুলো চিনতে শেখা</li>
+        </ul>
+        <div class="practice">
+          <b>🧪 অনুশীলন:</b> একই বিষয় (যেমন: মাধ্যাকর্ষণ) ৫ বছরের বাচ্চাকে যেমন বোঝাবেন, আবার একজন PhD ছাত্রকে যেমন বোঝাবেন — দুটো প্রম্পট দিয়ে পার্থক্য লক্ষ্য করুন।
+        </div>
+      </div>
+    </details>
+
+    <details class="phase">
+      <summary>
+        <span class="phase-icon">🌿</span>
+        <span class="phase-info">
+          <div class="phase-title">ফেজ ২ — মূল কৌশল (Core Techniques)</div>
+          <div class="phase-week">২–৩ সপ্তাহ</div>
+        </span>
+        <span class="status todo">⚪ শুরু হয়নি</span>
+        <span class="arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+        <ul>
+          <li>জিরো-শট প্রম্পটিং — সরাসরি জিজ্ঞেস করা</li>
+          <li>ফিউ-শট প্রম্পটিং — উদাহরণ দিয়ে শেখানো</li>
+          <li>ইনস্ট্রাকশন প্রম্পটিং — পরিষ্কার নির্দেশনা দেওয়া</li>
+          <li>ডিলিমিটার ব্যবহার — <code>```</code>, <code>"""</code> দিয়ে ইনপুট আলাদা করা</li>
+          <li>আউটপুট ফরম্যাট — JSON, টেবিল, বুলেট পয়েন্ট</li>
+          <li>রোল/পারসোনা প্রম্পটিং — "তুমি একজন অভিজ্ঞ শিক্ষক..."</li>
+        </ul>
+        <div class="practice">
+          <b>🧪 অনুশীলন:</b> AI দিয়ে প্রতিবার নিখুঁত JSON আউটপুট বের করানো, আর ৩টি পারসোনা (শিক্ষক, আইনজীবী, কমেডিয়ান) বানিয়ে একই প্রশ্ন করা।
+        </div>
+      </div>
+    </details>
+
+    <details class="phase">
+      <summary>
+        <span class="phase-icon">🌳</span>
+        <span class="phase-info">
+          <div class="phase-title">ফেজ ৩ — মাধ্যমিক (Intermediate)</div>
+          <div class="phase-week">৪–৫ সপ্তাহ</div>
+        </span>
+        <span class="status todo">⚪ শুরু হয়নি</span>
+        <span class="arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+        <ul>
+          <li>চেইন-অব-থট (CoT) — "ধাপে ধাপে ভাবো"</li>
+          <li>সেল্ফ-কনসিস্টেন্সি — একাধিক সমাধান থেকে সেরাটা বাছা</li>
+          <li>প্রম্পট চেইনিং — বড় কাজ ভেঙে ছোট ছোট প্রম্পটে করা</li>
+          <li>প্রম্পট টেমপ্লেট — বারবার ব্যবহারযোগ্য প্রম্পট বানানো</li>
+        </ul>
+        <div class="practice">
+          <b>🧪 অনুশীলন:</b> একই গণিত সমস্যা — সরাসরি প্রম্পট বনাম CoT প্রম্পট দিয়ে ফলাফল মাপুন।
+        </div>
+      </div>
+    </details>
+
+    <details class="phase">
+      <summary>
+        <span class="phase-icon">🌲</span>
+        <span class="phase-info">
+          <div class="phase-title">ফেজ ৪ — অ্যাডভান্সড (Advanced)</div>
+          <div class="phase-week">৬–৭ সপ্তাহ</div>
+        </span>
+        <span class="status todo">⚪ শুরু হয়নি</span>
+        <span class="arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+        <ul>
+          <li>ReAct — ভাবা + কাজ করা (টুল ব্যবহার)</li>
+          <li>RAG — নিজের ডেটা দিয়ে AI কে উত্তর দেওয়ানো</li>
+          <li>ফাংশন কলিং — প্রম্পট দিয়ে আসল অ্যাকশন চালানো</li>
+          <li>সিস্টেম প্রম্পট — AI এজেন্টের জন্য নিয়ম লেখা</li>
+        </ul>
+        <div class="practice">
+          <b>🧪 অনুশীলন:</b> একটি ডকুমেন্ট AI কে দিয়ে, শুধু সেই ডকুমেন্ট থেকে প্রশ্নের উত্তর দেওয়ানো (মিনি-RAG)।
+        </div>
+      </div>
+    </details>
+
+    <details class="phase">
+      <summary>
+        <span class="phase-icon">🛡️</span>
+        <span class="phase-info">
+          <div class="phase-title">ফেজ ৫ — মূল্যায়ন ও নিরাপত্তা</div>
+          <div class="phase-week">৮ম সপ্তাহ</div>
+        </span>
+        <span class="status todo">⚪ শুরু হয়নি</span>
+        <span class="arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+        <ul>
+          <li>প্রম্পট ইনজেকশন — প্রম্পট কীভাবে হ্যাক হয়, আর প্রতিরোধ</li>
+          <li>জেলব্রেকিং — বুঝতে হবে, যাতে আটকাতে পারি</li>
+          <li>প্রম্পট ইভালুয়েশন — কোন প্রম্পট ভালো, কীভাবে পরীক্ষা করবো</li>
+          <li>হ্যালুসিনেশন — AI কেন মিথ্যা বলে, কমানোর উপায়</li>
+        </ul>
+        <div class="practice">
+          <b>🧪 অনুশীলন:</b> নিজের বানানো চ্যাটবটকে প্রম্পট-ইনজেক্ট করার চেষ্টা করুন → তারপর ঠিক করুন!
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- 🛠️ প্রজেক্ট -->
+  <section>
+    <h2 class="section-title">🛠️ আমার প্রজেক্টগুলো</h2>
+    <p class="section-sub">শুধু পড়লে হবে না — হাতে-কলমে বানাতে হবে! 💪</p>
+    <div class="projects">
+      <div class="project">
+        <h3>📚 প্রম্পট লাইব্রেরি</h3>
+        <p>২০টি পরীক্ষিত ও ব্যবহারযোগ্য প্রম্পটের সংগ্রহ, নোটসহ।</p>
+        <span class="project-tag">ফেজ ২</span>
+      </div>
+      <div class="project">
+        <h3>🎓 AI স্টাডি বাডি</h3>
+        <p>যেকোনো বিষয় থেকে আমাকে কুইজ করানোর পারসোনা + CoT প্রম্পট।</p>
+        <span class="project-tag">ফেজ ৩</span>
+      </div>
+      <div class="project">
+        <h3>✍️ কনটেন্ট জেনারেটর</h3>
+        <p>একটা টপিক থেকে পুরো ব্লগ পোস্ট বানায় এমন প্রম্পট চেইন।</p>
+        <span class="project-tag">ফেজ ৩</span>
+      </div>
+      <div class="project">
+        <h3>🤖 মিনি চ্যাটবট</h3>
+        <p>নির্দিষ্ট কাজের জন্য ভালোভাবে ডিজাইন করা সিস্টেম প্রম্পটযুক্ত সহকারী।</p>
+        <span class="project-tag">ফেজ ৪</span>
+      </div>
+      <div class="project">
+        <h3>🛡️ প্রম্পট ইনজেকশন ডেমো</h3>
+        <p>একটা দুর্বল বট + শক্তিশালী সংস্করণ + লেখালেখি।</p>
+        <span class="project-tag">ফেজ ৫</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📓 লার্নিং লগ -->
+  <section>
+    <h2 class="section-title">📓 লার্নিং লগ</h2>
+    <p class="section-sub">প্রতিদিনের শেখা এখানে জমা হবে — ভবিষ্যতের আমি এগুলো পড়ে হাসবো 😄</p>
+
+    <div class="log-card">
+      <h3>📅 দিন ১ — LLM কী? (শুরুর দিন!)</h3>
+      <p>আজ শিখলাম: LLM আসলে একটা বিশাল "প্রেডিকশন মেশিন"। পরের শব্দটা কী হবে তা অনুমান করাই এর কাজ। টোকেন = শব্দের টুকরো, কনটেক্সট উইন্ডো = AI-এর স্বল্পমেয়াদি স্মৃতি, টেম্পারেচার = সৃজনশীলতার ডায়াল।</p>
+      <code>আজকের সেরা প্রম্পট: "মাধ্যাকর্ষণ ব্যাখ্যা করো একজন ৫ বছরের বাচ্চাকে" 🆚 "একজন PhD ছাত্রকে" — পার্থক্য বিশাল! 👀</code>
+    </div>
+
+    <div class="log-card" style="opacity:0.6">
+      <h3>📅 দিন ২ — শীঘ্রই আসছে...</h3>
+      <p>পরবর্তী বিষয়: ভালো প্রম্পটের গঠন (রোল + টাস্ক + কনটেক্সট + ফরম্যাট)</p>
+    </div>
+  </section>
+
+  <!-- 📚 রিসোর্স -->
+  <section class="resources">
+    <h2 class="section-title">📚 আমার শেখার উৎস</h2>
+    <p class="section-sub">ফ্রি রিসোর্সগুলো যেগুলো দিয়ে আমি শিখছি 👇</p>
+    <a href="https://www.promptingguide.ai/" target="_blank" rel="noopener">
+      🌐 Prompt Engineering Guide (DAIR.AI)
+      <span>সবচেয়ে জনপ্রিয় ফ্রি গাইড — বাংলা অনুবাদও আছে!</span>
+    </a>
+    <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener">
+      🎓 ChatGPT Prompt Engineering for Developers
+      <span>DeepLearning.AI-এর ফ্রি কোর্স (Andrew Ng)</span>
+    </a>
+    <a href="https://learnprompting.org/" target="_blank" rel="noopener">
+      📖 Learn Prompting
+      <span>শুরু থেকে শেখার জন্য ফ্রি ওপেন-সোর্স কোর্স</span>
+    </a>
+    <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">
+      📄 Anthropic প্রম্পট ইঞ্জিনিয়ারিং ডকস
+      <span>Claude-এর অফিসিয়াল গাইডলাইন</span>
+    </a>
+  </section>
+
+</div>
+
+<footer>
+  <p>💜 নিজের জন্য, নিজের হাতে বানানো <span class="heart">❤️</span></p>
+  <p>প্রতিদিন একটু একটু করে এগিয়ে যাচ্ছি — এটাই আসল জার্নি 🚀</p>
+</footer>
+
+</body>
+  </html>
+    
